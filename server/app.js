@@ -15,10 +15,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.get('/api/cows', (req, res) => {
-  console.log('get api cows request received');
   return models.Cows.getAll().
     then(cows => {
-      res.status(200).json(cows);
+      var formattedCows = cows.map(cow => { return {name: cow.name, description: cow.description}; });
+      res.status(200).json(formattedCows);
     })
     .error(error => {
       res.status(500).send(error);
@@ -26,32 +26,30 @@ app.get('/api/cows', (req, res) => {
 });
 
 app.post('/api/cows', (req, res, next) => {
-  // var username = req.body.username;
-  // var password = req.body.password;
-  // //check for users
-  // return models.Users.get({ username })
-  //   .then(user => {
-  //     if (user) {
-  //       // user already exists; throw user to catch and redirect
-  //       throw user;
-  //     }
-  //     //create user
-  //     return models.Users.create({ username, password });
-  //   })
-  //   .then(results => {
-  //     //upgrade session associate with user
-  //     models.Sessions.update({ hash: req.session.hash }, { userId: results.insertId });
-  //   })
-  //   .then(() => {
-  //     //redirect user to routes
-  //     res.redirect('/');
-  //   })
-  //   .error(error => {
-  //     res.status(500).send(error);
-  //   })
-  //   .catch(user => {
-  //     res.redirect('/signup');
-  //   });
+  var name = req.body.name;
+  var description = req.body.description;
+
+  return models.Cows.get({ name: name })
+    .then(cow => {
+      if (cow) {
+        // Cow already exists; throw Cow to catch and redirect
+        throw cow;
+      }
+      //create cow
+      return models.Cows.create({ name, description });
+    })
+    .then(results => {
+      return models.Cows.get({ id: results.insertId});
+    })
+    .then(results => {
+      res.status(200).send({name: results.name, description: results.description});
+    })
+    .error(error => {
+      res.status(500).send(error);
+    })
+    .catch(cow => {
+      res.status(500).send('Cow already defined with name: ' + cow.name);
+    });
 });
 
 module.exports = app;
