@@ -1,0 +1,12 @@
+class Wrapper extends React.Component {
+  render() {
+    return React.createElement(
+      "div",
+      null,
+      this.props.children
+    );
+  }
+}
+
+window.Wrapper = Wrapper;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NwZWMvY29tcG9uZW50cy9XcmFwcGVyLmpzeCJdLCJuYW1lcyI6WyJXcmFwcGVyIiwiUmVhY3QiLCJDb21wb25lbnQiLCJyZW5kZXIiLCJwcm9wcyIsImNoaWxkcmVuIiwid2luZG93Il0sIm1hcHBpbmdzIjoiQUFBQSxNQUFNQSxPQUFOLFNBQXNCQyxNQUFNQyxTQUE1QixDQUFzQztBQUNwQ0MsV0FBUztBQUNQLFdBQ0U7QUFBQTtBQUFBO0FBQU0sV0FBS0MsS0FBTCxDQUFXQztBQUFqQixLQURGO0FBR0Q7QUFMbUM7O0FBUXRDQyxPQUFPTixPQUFQLEdBQWlCQSxPQUFqQiIsImZpbGUiOiJXcmFwcGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiY2xhc3MgV3JhcHBlciBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG4gIHJlbmRlcigpIHtcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdj57dGhpcy5wcm9wcy5jaGlsZHJlbn08L2Rpdj5cbiAgICApO1xuICB9XG59XG5cbndpbmRvdy5XcmFwcGVyID0gV3JhcHBlcjtcbiJdfQ==
