@@ -1,50 +1,62 @@
-import Search from './Search.js';
-import VideoPlayer from './VideoPlayer.js';
-import VideoList from './VideoList.js';
-import exampleVideoData from '../data/exampleVideoData.js';
-
+import CowList from './CowList.js';
+import Parse from '../parse.js';
+import Cows from '../cows.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      videos: exampleVideoData,
-      currentVideo: exampleVideoData[0]
+      cows: [],
+      currentCow: null
     };
+    //this.currentCow = null;
   }
 
-  handleVideoListEntryTitleClick(video) {
-    this.setState({
-      currentVideo: video
+  componentDidMount() {
+    var app = this;
+    this.getCows(function() {
+      // console.log('before state', this, Cows.items());
+      // console.log('after state', this, Cows.items());
+      // this.forceUpdate();
+      app.setState({cows: Cows.items(), currentCow: null});
     });
   }
 
+  getCows(callback) {
+    Parse.readAll(function(data) {
+      Cows.update(data);
+      callback();
+    });
+  }
+
+  handleVideoListEntryTitleClick(cow) {
+    // this.setState({
+    //   currentCow: cow
+    // });
+  }
+
+  /*
+  * It's very important to bind the context of this callback.
+  * Also acceptable is to pass a anonymous function expression with a fat
+  * arrow that inherits the surrounding lexical `this` context:
+  *
+  *   handleVideoListEntryTitleClick={(video) => this.onVideoListEntryClick(video)}
+  *                                  - or -
+  *   handleVideoListEntryTitleClick={(currentVideo) => this.setState({currentVideo})}
+  *
+  */
+
+  // this.handleVideoListEntryTitleClick.bind(this)
   render() {
     return (
-      <div>
-        <nav className="navbar">
-          <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
-          </div>
-        </nav>
-        <div className="row">
-          <div className="col-md-7">
-            <VideoPlayer video={this.state.currentVideo}/>
-          </div>
-          <div className="col-md-5">
-            <VideoList
-              handleVideoListEntryTitleClick={this.handleVideoListEntryTitleClick.bind(this)}
-              videos={this.state.videos}
-            />
-          </div>
-        </div>
-      </div>
+      <CowList
+        handleVideoListEntryTitleClick={null}
+        cows={Cows.items()}
+      />
     );
   }
 }
-
-
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
