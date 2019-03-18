@@ -17,6 +17,8 @@
     "lint": "eslint ./"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.0.0-alpha.2",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
     "ejs": "^2.4.1",
@@ -25,7 +27,9 @@
     "lodash": "^4.17.4",
     "mysql": "^2.12.0",
     "node-mocks-http": "^1.6.1",
-    "request": "^2.34.0"
+    "request": "^2.34.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -34,7 +38,10 @@
     "chai": "^3.5.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jsdoc": "^3.5.3",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "babel-plugin-react": "1.0.0",
+    "babel-preset-react": "^6.5.0",
+    "sinon": "1.17.3"
   },
   "babel": {
     "presets": [
