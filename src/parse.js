@@ -2,10 +2,7 @@ var Parse = {
 
   server:'http://localhost:4568/api/cows',
 
-  //server: `http://parse.${window.CAMPUS}.hackreactor.com/chatterbox/classes/messages`,
-
   create: function(message, successCB, errorCB = null) {
-
     $.ajax({
       url: Parse.server,
       type: 'POST',
@@ -29,7 +26,6 @@ var Parse = {
       }
     });
   }
-
 };
 
 export default Parse;

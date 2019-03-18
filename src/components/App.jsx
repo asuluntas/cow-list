@@ -1,6 +1,5 @@
 import CowList from './CowList.js';
 import Parse from '../parse.js';
-import Cows from '../cows.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,23 +9,17 @@ class App extends React.Component {
       cows: [],
       currentCow: null
     };
-    //this.currentCow = null;
   }
 
   componentDidMount() {
-    var app = this;
-    this.getCows(function() {
-      // console.log('before state', this, Cows.items());
-      // console.log('after state', this, Cows.items());
-      // this.forceUpdate();
-      app.setState({cows: Cows.items(), currentCow: null});
-    });
+    this.getCows();
   }
 
-  getCows(callback) {
+  getCows() {
+    var app = this;
     Parse.readAll(function(data) {
-      Cows.update(data);
-      callback();
+      console.log(data);
+      app.setState({cows: data, currentCow: null});
     });
   }
 
@@ -52,7 +45,7 @@ class App extends React.Component {
     return (
       <CowList
         handleVideoListEntryTitleClick={null}
-        cows={Cows.items()}
+        cows={this.state.cows}
       />
     );
   }
