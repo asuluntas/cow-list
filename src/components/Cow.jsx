@@ -1,7 +1,17 @@
+class Cow extends React.Component {
+  constructor(props) {
+    super(props);
 
-var Cow = ({cow, handleVideoListEntryTitleClick}) => (
-  <div> {cow.name} </div>
-);
+    this.cow = props.cow;
+    this.handleCowClick = props.handleCowClick;
+  }
+
+  render() {
+    return (
+      <div onClick={() => this.handleCowClick(this.cow)}> {this.cow.name} </div>
+    );
+  }
+}
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated

@@ -1,11 +1,11 @@
 import Cow from './Cow.js';
 
-var CowList = ({cows, handleCowListEntryTitleClick}) => (
+var CowList = ({cows, handleCowClick}) => (
   <div className="cow-list">
     {cows.map((cow) =>
       <Cow
         cow={cow}
-        handleCowListEntryTitleClick={handleCowListEntryTitleClick}
+        handleCowClick={handleCowClick}
       />
     )}
   </div>

@@ -2,15 +2,15 @@ var Parse = {
 
   server:'http://localhost:4568/api/cows',
 
-  create: function(message, successCB, errorCB = null) {
+  create: function(cow, successCB, errorCB = null) {
     $.ajax({
       url: Parse.server,
       type: 'POST',
-      data: JSON.stringify(message),
+      data: JSON.stringify(cow),
       contentType: 'application/json',
       success: successCB,
       error: errorCB || function (error) {
-        console.error('chatterbox: Failed to create message', error);
+        console.error('cows: Failed to create cow', error);
       }
     });
   },

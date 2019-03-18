@@ -1,4 +1,6 @@
 import CowList from './CowList.js';
+import HighlightedCow from './HighlightedCow.js';
+import FormView from './FormView.js';
 import Parse from '../parse.js';
 
 class App extends React.Component {
@@ -9,6 +11,9 @@ class App extends React.Component {
       cows: [],
       currentCow: null
     };
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleCowClick = this.handleCowClick.bind(this);
   }
 
   componentDidMount() {
@@ -23,30 +28,31 @@ class App extends React.Component {
     });
   }
 
-  handleVideoListEntryTitleClick(cow) {
-    // this.setState({
-    //   currentCow: cow
-    // });
+  handleCowClick(cow) {
+    console.log('click listener', this, cow);
+    this.setState({
+      cows:this.state.cows,
+      currentCow:cow
+    });
+    console.log('after state modification', this.state);
   }
 
-  /*
-  * It's very important to bind the context of this callback.
-  * Also acceptable is to pass a anonymous function expression with a fat
-  * arrow that inherits the surrounding lexical `this` context:
-  *
-  *   handleVideoListEntryTitleClick={(video) => this.onVideoListEntryClick(video)}
-  *                                  - or -
-  *   handleVideoListEntryTitleClick={(currentVideo) => this.setState({currentVideo})}
-  *
-  */
+  handleFormSubmit() {
+    this.getCows();
+  }
 
-  // this.handleVideoListEntryTitleClick.bind(this)
   render() {
     return (
-      <CowList
-        handleVideoListEntryTitleClick={null}
-        cows={this.state.cows}
-      />
+      <div>
+        <HighlightedCow
+          cow={this.state.currentCow}
+        />
+        <FormView onSubmit={this.handleFormSubmit}></FormView>
+        <CowList
+          handleCowClick={this.handleCowClick}
+          cows={this.state.cows}
+        />
+      </div>
     );
   }
 }
