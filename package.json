@@ -42,10 +42,5 @@
     "babel-plugin-react": "1.0.0",
     "babel-preset-react": "^6.5.0",
     "sinon": "1.17.3"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   }
 }
