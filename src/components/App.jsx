@@ -47,7 +47,7 @@ class App extends React.Component {
         <HighlightedCow
           cow={this.state.currentCow}
         />
-        <FormView onSubmit={this.handleFormSubmit}></FormView>
+        <FormView onSubmit={this.handleFormSubmit}/>
         <CowList
           handleCowClick={this.handleCowClick}
           cows={this.state.cows}
