@@ -1,6 +1,6 @@
 import CowList from './CowList.js';
 import HighlightedCow from './HighlightedCow.js';
-import FormView from './FormView.js';
+import Form from './Form.js';
 import Parse from '../parse.js';
 
 class App extends React.Component {
@@ -47,7 +47,7 @@ class App extends React.Component {
         <HighlightedCow
           cow={this.state.currentCow}
         />
-        <FormView onSubmit={this.handleFormSubmit}/>
+        <Form onSubmit={this.handleFormSubmit}/>
         <CowList
           handleCowClick={this.handleCowClick}
           cows={this.state.cows}
@@ -57,6 +57,4 @@ class App extends React.Component {
   }
 }
 
-// In the ES6 spec, files are "modules" and do not share a top-level scope
-// `var` declarations will only exist globally where explicitly defined
 export default App;

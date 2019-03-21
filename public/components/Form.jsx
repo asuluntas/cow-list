@@ -1,6 +1,6 @@
 import Parse from "../parse.js";
 
-class FormView extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
 
@@ -40,4 +40,4 @@ class FormView extends React.Component {
   }
 }
 
-export default FormView;
+export default Form;
